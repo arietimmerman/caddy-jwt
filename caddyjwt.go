@@ -49,6 +49,11 @@ func (m *Middleware) ValidateToken(uToken string) (*jwt.Token, error) {
 	}
 
 	token, err := jwt.Parse(uToken, func(token *jwt.Token) (interface{}, error) {
+
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+		}
+
 		return []byte(m.Secret), nil
 	})
 
