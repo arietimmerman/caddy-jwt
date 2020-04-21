@@ -1,0 +1,23 @@
+
+
+:2015 {
+
+    handle /login* {
+        file_server browse
+    }
+
+    handle {
+        file_server {
+            root protected
+        }
+
+        route {
+            jwt {
+                path /
+                except /login
+                redirect /login
+            }
+        }
+    }
+
+}
