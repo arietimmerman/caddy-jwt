@@ -133,7 +133,7 @@ func (m *Middleware) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				return d.SyntaxErr("Unexpected token: " + d.Token().Text)
 			}
 		}
-	}2015
+	}
 
 	return nil
 }
